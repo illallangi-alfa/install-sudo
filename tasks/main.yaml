@@ -1,0 +1,9 @@
+---
+- name: "Install sudo (debian)"
+  apt:
+    pkg: "{{ install_sudo_packages[(ansible_os_family | lower) + '_' + (ansible_architecture | lower)] | json_query('[].name')}}"
+    update_cache: yes
+    install_recommends: no
+  register: installed_sudo_packages
+  tags:
+    - "sudo"
